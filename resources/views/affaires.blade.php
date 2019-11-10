@@ -63,7 +63,24 @@
 
 
   <div class="control">
-    <textarea class="textarea" name="article" placeholder="On y va !" required></textarea>
+    <textarea class="textarea" name="article" placeholder="On y va !"></textarea>
+  <script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
+<script>
+    tinymce.init({
+        selector:'textarea.textarea',
+        theme: 'silver',
+
+        plugins: 'lists | image media link tinydrive code imagetools | wordcount',
+        toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | insertfile link | wordcount',
+        width: 1100,
+        height: 300,
+
+        mobile:{
+          theme:'mobile',
+          plugins: [ 'autosave', 'lists', 'autolink' ]
+        }
+    });
+</script>
         <div class="card-content">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="submit" class="button is-primary">
@@ -95,11 +112,11 @@
   <div class="card-content">
     <div class="media-left">
   <figure class="image is-128x128">
-    <a href="storage/{{$affaire->image}}" target="_blank"><img src="storage/{{$affaire->image}}" alt></a>
+    <a href="storage/{{$affaire->image}}" target="_blank"><img src="storage/{{$affaire->image}}" alt=""></a>
   </figure>
   </div>
     <div class="content">
-    	{!! nl2br(e($affaire->article)) !!}
+    	{!! $affaire->article !!}
       </div>
     <div class="content">
 
@@ -108,7 +125,7 @@
   </div>
   <footer class="card-footer">
     <a href="mailto:{{$affaire->email}}" class="card-footer-item">Contacte l'auteur !</a>
-    <a href="{{'affaires'}}.{{$affaire->id}}" class="card-footer-item" target="_blank">Lien vers l'article</a>
+    <a href="{{'affaires'}}/{{$affaire->id}}" class="card-footer-item" target="_blank">Lien vers l'article</a>
     @if(auth::user()->name === $affaire->author)
     <a href="{{'delete'}}/{{'affaires'}}/{{$affaire->id}}" class="card-footer-item" id="supp_affaires" onclick="return confirm('C\'est ton dernier mot ? La sentence est irrévocable ?');">Supprimer l'article ?</a>
 
