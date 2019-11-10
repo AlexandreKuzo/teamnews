@@ -70,3 +70,8 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## Using TinyMCE here
+To use WYSIWYG TinyMCE Editor, here is a useful link : https://artisansweb.net/install-use-tinymce-wysiwyg-html-editor-laravel/
+After downloading the project, please follow this guide.
