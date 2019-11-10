@@ -15,6 +15,23 @@
   <label class="label">Un article à publier ?</label>
   <div class="control">
     <textarea class="textarea" name="article" placeholder="On y va !" required></textarea>
+     <script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
+<script>
+    tinymce.init({
+        selector:'textarea.textarea',
+        theme: 'silver',
+
+        plugins: 'lists | image media link tinydrive code imagetools | wordcount',
+        toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | insertfile link | wordcount',
+        width: 1100,
+        height: 300,
+
+        mobile:{
+          theme:'mobile',
+          plugins: [ 'autosave', 'lists', 'autolink' ]
+        }
+    });
+</script>
         <div class="card-content">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="submit" class="button is-black">
@@ -44,7 +61,7 @@
   </header>
   <div class="card-content">
     <div class="content">
-    	{{ $new->article }}
+    	{!! $new->article !!}
       </div>
 
   <div class="content">
